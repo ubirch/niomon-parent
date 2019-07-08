@@ -90,14 +90,14 @@
         <skinny-framework.version>3.0.1</skinny-framework.version>
 
         <!-- comma separated names of project libraries - this is used to improve caching in docker images -->
-        <project-libs>microservice-base,microservice-base-mock</project-libs>
+        <project-libs>microservice-base,microservice-base-mock,niomon-common-files</project-libs>
     </properties>
 
     <dependencies>
-        <!-- region helm utils -->
+        <!-- region niomon common files -->
         <dependency>
             <groupId>com.ubirch</groupId>
-            <artifactId>niomon-helm-utils</artifactId>
+            <artifactId>niomon-common-files</artifactId>
             <version>1.0.0</version>
         </dependency>
         <!-- endregion -->
@@ -418,15 +418,65 @@
                             </goals>
                             <configuration>
                                 <includeGroupIds>com.ubirch</includeGroupIds>
-                                <includeArtifactIds>niomon-helm-utils</includeArtifactIds>
-                                <excludes>META-INF/**/*,META-INF</excludes>
-                                <outputDirectory>./helm/${project.artifactId}</outputDirectory>
+                                <includeArtifactIds>niomon-common-files</includeArtifactIds>
+                                <includes>helm-files/**/*</includes>
+                                <outputDirectory>${project.build.directory}/common-helm-files</outputDirectory>
+                                <overWriteReleases>true</overWriteReleases>
+                                <overWriteSnapshots>true</overWriteSnapshots>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>extract-top-level-commons</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>unpack-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <includeGroupIds>com.ubirch</includeGroupIds>
+                                <includeArtifactIds>niomon-common-files</includeArtifactIds>
+                                <includes>top-level-files/**/*</includes>
+                                <outputDirectory>${project.build.directory}/common-top-level-files</outputDirectory>
                                 <overWriteReleases>true</overWriteReleases>
                                 <overWriteSnapshots>true</overWriteSnapshots>
                             </configuration>
                         </execution>
                     </executions>
                 </plugin>
+                <!-- move common files into the main tree -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>move-common-helm-files</id>
+                            <phase>process-resources</phase>
+                            <goals><goal>copy-resources</goal></goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.build.directory}/common-helm-files/helm-files</directory>
+                                    </resource>
+                                </resources>
+                                <outputDirectory>./helm/${project.artifactId}</outputDirectory>
+                                <overwrite>true</overwrite>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>move-common-docker-files</id>
+                            <phase>process-resources</phase>
+                            <goals><goal>copy-resources</goal></goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.build.directory}/common-top-level-files/top-level-files</directory>
+                                    </resource>
+                                </resources>
+                                <outputDirectory>.</outputDirectory>
+                                <overwrite>true</overwrite>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
                 <!-- create and/or push the created docker image -->
                 <plugin>
                     <groupId>com.spotify</groupId>
@@ -514,6 +564,13 @@
                                     <include>values.*.yaml</include>
                                     <include>.helmignore</include>
                                     <include>templates/_helpers.yaml</include>
+                                </includes>
+                                <followSymlinks>false</followSymlinks>
+                            </fileset>
+                            <fileset>
+                                <directory>.</directory>
+                                <includes>
+                                    <include>Dockerfile</include>
                                 </includes>
                                 <followSymlinks>false</followSymlinks>
                             </fileset>
