@@ -411,7 +411,7 @@
                         </execution>
 
                         <execution>
-                            <id>extract-helm-commons</id>
+                            <id>extract-helm-common</id>
                             <phase>generate-resources</phase>
                             <goals>
                                 <goal>unpack-dependencies</goal>
@@ -419,14 +419,14 @@
                             <configuration>
                                 <includeGroupIds>com.ubirch</includeGroupIds>
                                 <includeArtifactIds>niomon-common-files</includeArtifactIds>
-                                <includes>helm-files/**/*</includes>
-                                <outputDirectory>${project.build.directory}/common-helm-files</outputDirectory>
+                                <includes>helm-common/**/*</includes>
+                                <outputDirectory>${project.build.directory}/helm-common</outputDirectory>
                                 <overWriteReleases>true</overWriteReleases>
                                 <overWriteSnapshots>true</overWriteSnapshots>
                             </configuration>
                         </execution>
                         <execution>
-                            <id>extract-top-level-commons</id>
+                            <id>extract-root-common</id>
                             <phase>generate-resources</phase>
                             <goals>
                                 <goal>unpack-dependencies</goal>
@@ -434,8 +434,8 @@
                             <configuration>
                                 <includeGroupIds>com.ubirch</includeGroupIds>
                                 <includeArtifactIds>niomon-common-files</includeArtifactIds>
-                                <includes>top-level-files/**/*</includes>
-                                <outputDirectory>${project.build.directory}/common-top-level-files</outputDirectory>
+                                <includes>root-common/**/*</includes>
+                                <outputDirectory>${project.build.directory}/root-common</outputDirectory>
                                 <overWriteReleases>true</overWriteReleases>
                                 <overWriteSnapshots>true</overWriteSnapshots>
                             </configuration>
@@ -447,13 +447,13 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <executions>
                         <execution>
-                            <id>move-common-helm-files</id>
+                            <id>move-helm-common</id>
                             <phase>process-resources</phase>
                             <goals><goal>copy-resources</goal></goals>
                             <configuration>
                                 <resources>
                                     <resource>
-                                        <directory>${project.build.directory}/common-helm-files/helm-files</directory>
+                                        <directory>${project.build.directory}/helm-common/helm-common</directory>
                                     </resource>
                                 </resources>
                                 <outputDirectory>./helm/${project.artifactId}</outputDirectory>
@@ -461,13 +461,13 @@
                             </configuration>
                         </execution>
                         <execution>
-                            <id>move-common-docker-files</id>
+                            <id>move-root-common</id>
                             <phase>process-resources</phase>
                             <goals><goal>copy-resources</goal></goals>
                             <configuration>
                                 <resources>
                                     <resource>
-                                        <directory>${project.build.directory}/common-top-level-files/top-level-files</directory>
+                                        <directory>${project.build.directory}/root-common/root-common</directory>
                                     </resource>
                                 </resources>
                                 <outputDirectory>.</outputDirectory>
@@ -552,7 +552,7 @@
                     </dependencies>
                 </plugin>
 
-                <!-- clean the helm stuff -->
+                <!-- clean the common stuff -->
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>
