@@ -21,7 +21,7 @@
 
     <groupId>com.ubirch</groupId>
     <artifactId>niomon-base</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <licenses>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>com.ubirch</groupId>
             <artifactId>niomon-common-files</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <!-- endregion -->
 
