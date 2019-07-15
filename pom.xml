@@ -90,7 +90,7 @@
         <skinny-framework.version>3.0.1</skinny-framework.version>
 
         <!-- comma separated names of project libraries - this is used to improve caching in docker images -->
-        <project-libs>niomon-foundation,niomon-foundation-mock,niomon-common-files</project-libs>
+        <project-libs>foundation,foundation-mock,common-files</project-libs>
     </properties>
 
     <dependencies>
