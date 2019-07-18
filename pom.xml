@@ -465,7 +465,7 @@
                                         <directory>${project.build.directory}/helm-common/helm-common</directory>
                                     </resource>
                                 </resources>
-                                <outputDirectory>./helm/${project.artifactId}</outputDirectory>
+                                <outputDirectory>${project.build.directory}/deploy/${project.artifactId}</outputDirectory>
                                 <overwrite>true</overwrite>
                             </configuration>
                         </execution>
@@ -480,6 +480,20 @@
                                     </resource>
                                 </resources>
                                 <outputDirectory>.</outputDirectory>
+                                <overwrite>true</overwrite>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>move-helm-project-files</id>
+                            <phase>process-resources</phase>
+                            <goals><goal>copy-resources</goal></goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>./helm/${project.artifactId}</directory>
+                                    </resource>
+                                </resources>
+                                <outputDirectory>${project.build.directory}/deploy/${project.artifactId}</outputDirectory>
                                 <overwrite>true</overwrite>
                             </configuration>
                         </execution>
