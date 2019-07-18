@@ -386,8 +386,8 @@
                                 <goal>unpack-dependencies</goal>
                             </goals>
                             <configuration>
-                                <includeGroupIds>com.ubirch</includeGroupIds>
-                                <includeArtifactIds>niomon-common-files</includeArtifactIds>
+                                <includeGroupIds>com.ubirch.niomon</includeGroupIds>
+                                <includeArtifactIds>common-files</includeArtifactIds>
                                 <includes>helm-common/**/*</includes>
                                 <outputDirectory>${project.build.directory}/helm-common</outputDirectory>
                                 <overWriteReleases>true</overWriteReleases>
@@ -401,8 +401,8 @@
                                 <goal>unpack-dependencies</goal>
                             </goals>
                             <configuration>
-                                <includeGroupIds>com.ubirch</includeGroupIds>
-                                <includeArtifactIds>niomon-common-files</includeArtifactIds>
+                                <includeGroupIds>com.ubirch.niomon</includeGroupIds>
+                                <includeArtifactIds>common-files</includeArtifactIds>
                                 <includes>root-common/**/*</includes>
                                 <outputDirectory>${project.build.directory}/root-common</outputDirectory>
                                 <overWriteReleases>true</overWriteReleases>
