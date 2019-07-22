@@ -257,6 +257,26 @@
                 <configuration>
                     <skip>false</skip>
                 </configuration>
+                <inherited>false</inherited>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals><goal>copy-resources</goal></goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>.</directory>
+                                    <include>pom.xml</include>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <inherited>false</inherited>
             </plugin>
         </plugins>
 
@@ -581,15 +601,6 @@
                     <version>3.1.0</version>
                     <configuration>
                         <filesets>
-                            <fileset>
-                                <directory>helm/${project.artifactId}</directory>
-                                <includes>
-                                    <include>values.*.yaml</include>
-                                    <include>.helmignore</include>
-                                    <include>templates/_helpers.yaml</include>
-                                </includes>
-                                <followSymlinks>false</followSymlinks>
-                            </fileset>
                             <fileset>
                                 <directory>.</directory>
                                 <includes>
