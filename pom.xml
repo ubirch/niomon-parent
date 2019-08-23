@@ -547,6 +547,15 @@
                             <JAR_FILE>target/${project.build.finalName}.${project.packaging}</JAR_FILE>
                         </buildArgs>
                     </configuration>
+                    <dependencies>
+                        <!-- if compiling with java 10 this is necessary -->
+                        <dependency>
+                            <groupId>com.sun.activation</groupId>
+                            <artifactId>javax.activation</artifactId>
+                            <version>1.2.0</version>
+                            <scope>compile</scope>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <!-- for mvn deploy to work, disable the default deploy plugin -->
                 <plugin>
