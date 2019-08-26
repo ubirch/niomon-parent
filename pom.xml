@@ -261,6 +261,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals><goal>copy-resources</goal></goals>
@@ -474,6 +475,7 @@
                 <!-- move common files into the main tree -->
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
                     <executions>
                         <execution>
                             <id>move-helm-common</id>
