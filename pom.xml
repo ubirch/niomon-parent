@@ -440,21 +440,7 @@
                             </configuration>
                         </execution>
 
-                        <execution>
-                            <id>extract-helm-common</id>
-                            <phase>generate-resources</phase>
-                            <goals>
-                                <goal>unpack-dependencies</goal>
-                            </goals>
-                            <configuration>
-                                <includeGroupIds>com.ubirch.niomon</includeGroupIds>
-                                <includeArtifactIds>common-files</includeArtifactIds>
-                                <includes>helm-common/**/*</includes>
-                                <outputDirectory>${project.build.directory}/helm-common</outputDirectory>
-                                <overWriteReleases>true</overWriteReleases>
-                                <overWriteSnapshots>true</overWriteSnapshots>
-                            </configuration>
-                        </execution>
+                        <!-- extract the common Dockerfile -->
                         <execution>
                             <id>extract-root-common</id>
                             <phase>generate-resources</phase>
@@ -472,25 +458,12 @@
                         </execution>
                     </executions>
                 </plugin>
+
                 <!-- move common files into the main tree -->
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
                     <executions>
-                        <execution>
-                            <id>move-helm-common</id>
-                            <phase>process-resources</phase>
-                            <goals><goal>copy-resources</goal></goals>
-                            <configuration>
-                                <resources>
-                                    <resource>
-                                        <directory>${project.build.directory}/helm-common/helm-common</directory>
-                                    </resource>
-                                </resources>
-                                <outputDirectory>${project.build.directory}/deploy/${project.artifactId}</outputDirectory>
-                                <overwrite>true</overwrite>
-                            </configuration>
-                        </execution>
                         <execution>
                             <id>move-root-common</id>
                             <phase>process-resources</phase>
@@ -502,20 +475,6 @@
                                     </resource>
                                 </resources>
                                 <outputDirectory>.</outputDirectory>
-                                <overwrite>true</overwrite>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>move-helm-project-files</id>
-                            <phase>process-resources</phase>
-                            <goals><goal>copy-resources</goal></goals>
-                            <configuration>
-                                <resources>
-                                    <resource>
-                                        <directory>./helm/${project.artifactId}</directory>
-                                    </resource>
-                                </resources>
-                                <outputDirectory>${project.build.directory}/deploy/${project.artifactId}</outputDirectory>
                                 <overwrite>true</overwrite>
                             </configuration>
                         </execution>
@@ -559,6 +518,7 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+
                 <!-- for mvn deploy to work, disable the default deploy plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -568,6 +528,7 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
+
                 <!-- checkstyle -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
