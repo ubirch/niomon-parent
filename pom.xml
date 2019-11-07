@@ -119,7 +119,7 @@
         <skinny-framework.version>3.0.1</skinny-framework.version>
 
         <!-- comma separated names of project libraries - this is used to improve caching in docker images -->
-        <project-libs>foundation,foundation-mock,common-files,health-check</project-libs>
+        <project-libs>foundation,foundation-mock,common-files,health-check,redis-cache</project-libs>
     </properties>
 
     <dependencies>
