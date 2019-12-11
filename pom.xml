@@ -439,45 +439,6 @@
                                 <includeArtifactIds>${project-libs}</includeArtifactIds>
                             </configuration>
                         </execution>
-
-                        <!-- extract the common Dockerfile -->
-                        <execution>
-                            <id>extract-root-common</id>
-                            <phase>generate-resources</phase>
-                            <goals>
-                                <goal>unpack-dependencies</goal>
-                            </goals>
-                            <configuration>
-                                <includeGroupIds>com.ubirch.niomon</includeGroupIds>
-                                <includeArtifactIds>common-files</includeArtifactIds>
-                                <includes>root-common/**/*</includes>
-                                <outputDirectory>${project.build.directory}/root-common</outputDirectory>
-                                <overWriteReleases>true</overWriteReleases>
-                                <overWriteSnapshots>true</overWriteSnapshots>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!-- move common files into the main tree -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven-resources-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>move-root-common</id>
-                            <phase>process-resources</phase>
-                            <goals><goal>copy-resources</goal></goals>
-                            <configuration>
-                                <resources>
-                                    <resource>
-                                        <directory>${project.build.directory}/root-common/root-common</directory>
-                                    </resource>
-                                </resources>
-                                <outputDirectory>.</outputDirectory>
-                                <overwrite>true</overwrite>
-                            </configuration>
-                        </execution>
                     </executions>
                 </plugin>
 
@@ -565,23 +526,6 @@
                             <version>8.18</version>
                         </dependency>
                     </dependencies>
-                </plugin>
-
-                <!-- clean the common stuff -->
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.1.0</version>
-                    <configuration>
-                        <filesets>
-                            <fileset>
-                                <directory>.</directory>
-                                <includes>
-                                    <include>Dockerfile</include>
-                                </includes>
-                                <followSymlinks>false</followSymlinks>
-                            </fileset>
-                        </filesets>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
