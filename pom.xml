@@ -123,14 +123,6 @@
     </properties>
 
     <dependencies>
-        <!-- region niomon common files -->
-        <dependency>
-            <groupId>com.ubirch.niomon</groupId>
-            <artifactId>common-files</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-        </dependency>
-        <!-- endregion -->
-
         <!-- region scala, logging etc. -->
         <dependency>
             <groupId>org.scala-lang</groupId>
