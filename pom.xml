@@ -81,7 +81,6 @@
 
         <!-- ubirch -->
         <ubirch-crypto.version>2.1.0</ubirch-crypto.version>
-        <ubirch-protocol-java.version>2.1.1</ubirch-protocol-java.version>
         <ubirch-kafka-envelope.version>1.0.4-SNAPSHOT</ubirch-kafka-envelope.version>
 
         <!-- Scala -->
