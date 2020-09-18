@@ -21,7 +21,7 @@
 
     <groupId>com.ubirch.niomon</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <licenses>
@@ -81,12 +81,12 @@
 
         <!-- ubirch -->
         <ubirch-crypto.version>2.1.0</ubirch-crypto.version>
-        <ubirch-kafka-envelope.version>1.0.4-SNAPSHOT</ubirch-kafka-envelope.version>
+        <ubirch-kafka-envelope.version>1.0.5-SNAPSHOT</ubirch-kafka-envelope.version>
 
         <!-- Scala -->
         <scala-maven-plugin.version>3.4.2</scala-maven-plugin.version>
         <scala.major.version>2.12</scala.major.version>
-        <scala.minor.version>.6</scala.minor.version>
+        <scala.minor.version>.8</scala.minor.version>
         <scala.version>${scala.major.version}${scala.minor.version}</scala.version>
 
         <!-- akka -->
