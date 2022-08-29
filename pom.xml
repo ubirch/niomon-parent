@@ -21,7 +21,7 @@
 
     <groupId>com.ubirch.niomon</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <licenses>
@@ -64,14 +64,14 @@
     </scm>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/37429227/packages/maven</url>
         </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/37429227/packages/maven</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <properties>
@@ -86,7 +86,7 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 
         <!-- ubirch -->
-        <ubirch-crypto.version>2.1.3-SNAPSHOT</ubirch-crypto.version>
+        <ubirch-crypto.version>2.1.4-SNAPSHOT</ubirch-crypto.version>
         <ubirch-kafka-envelope.version>1.0.5-SNAPSHOT</ubirch-kafka-envelope.version>
 
         <!-- Scala -->
